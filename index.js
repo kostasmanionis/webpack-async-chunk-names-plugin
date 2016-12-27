@@ -11,9 +11,9 @@ AsyncChunkNames.prototype.apply = function (compiler) {
             compilation.modules.forEach(function (module) {
                 module.blocks.forEach(function (block) {
                     block.dependencies.forEach(function (dependency) {
-                        const format = path.parse(dependency.userRequest);
-                        dependency.block.chunkName = format.name;
-                        dependency.block.name = format.name;
+                        const parsedPath = path.parse(dependency.module.resource);
+                        dependency.block.chunkName = parsedPath.name;
+                        dependency.block.name = parsedPath.name;
                     });
                 });
             });
