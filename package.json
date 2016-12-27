@@ -1,0 +1,12 @@
+{
+  "name": "webpack-async-chunk-names-plugin",
+  "version": "0.1.0",
+  "description": "TODO ADD",
+  "main": "index.js",
+  "repository": "https://github.com/kostasmanionis/webpack-async-chunk-names-plugin",
+  "author": "Kostas Manionis <kostasmanionis@gmail.com>",
+  "license": "MIT",
+  "peerDependencies": {
+    "webpack": "^2.1.0-beta.22"
+  }
+}
