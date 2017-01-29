@@ -20,12 +20,20 @@ yarn add webpack-async-chunk-names-plugin -D
 ## Usage
 
 ```
-const AsyncChunkNames = require('webpack-async-chunk-names-plugin');
+const AsyncChunkNames = require('../index');
 
-// webpack config
-plugins: [
-    new AsyncChunkNames()
-]
+module.exports = {
+    entry: __dirname + '/entry.js',
+    output: {
+        path: __dirname + '/output',
+        filename: 'output.js',
+        chunkFilename: '[name].js'
+    },
+    plugins: [
+        new AsyncChunkNames()
+    ]
+};
+
 ```
 
 Don't forget to set [output.chunkFilename](https://webpack.js.org/configuration/output/#output-chunkfilename)!
