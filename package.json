@@ -8,5 +8,12 @@
   "license": "MIT",
   "peerDependencies": {
     "webpack": "^2.1.0-beta.22"
+  },
+  "devDependencies": {
+    "jest": "^18.1.0",
+    "webpack": "^2.2.0"
+  },
+  "scripts": {
+    "test": "jest"
   }
 }
