@@ -2,7 +2,14 @@
 
 ## DEPRECATED, YOU PROBABLY DON'T NEED THIS ANYMORE
 
-https://webpack.js.org/guides/code-splitting-async/#chunk-names
+https://webpack.js.org/api/module-methods/#import-
+
+```
+import(
+  /* webpackChunkName: "my-chunk-name" */
+  'module'
+);
+```
 
 ## Why?
 
