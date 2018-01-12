@@ -1,39 +1,47 @@
-const webpack = require('webpack')
-const path = require('path')
-const AsyncDependenciesBlock = require('webpack/lib/AsyncDependenciesBlock');
-const DEP_BLOCK_NAME = 'AsyncDependenciesBlock';
+const path = require('path');
 
-function checkConstructorNames(object) {
-    const obj = Object.getPrototypeOf(object);
-    if(obj) {
-        if (obj.constructor.name === DEP_BLOCK_NAME) {
-            return true;
-        } else {
-            return checkConstructorNames(obj);
-        }
-    } else {
-        return false;
+const checkConstructorName = block => {
+  const blockPrototype = Object.getPrototypeOf(block);
+
+  if (blockPrototype) {
+    if (blockPrototype.constructor.name === 'AsyncDependenciesBlock') {
+      return true;
     }
-}
 
-function AsyncChunkNames() {}
+    return checkConstructorName(blockPrototype);
+  }
 
-AsyncChunkNames.prototype.apply = function (compiler) {
-    compiler.plugin('compilation', function (compilation) {
-        compilation.plugin('seal', function () {
-            compilation.modules.forEach(function (module) {
-                module.blocks.forEach(function (block) {
-                    if (checkConstructorNames(block)) {
-                        block.dependencies.forEach(function (dependency) {
-                            const parsedPath = path.parse(dependency.module.resource);
-                            dependency.block.chunkName = parsedPath.name;
-                            dependency.block.name = parsedPath.name;
-                        });
-                    }
-                });
-            });
+  return false;
+};
+
+class AsyncChunkNames {
+  apply(compiler) {
+    compiler.plugin('compilation', compilation => {
+      compilation.plugin('seal', () => {
+        compilation.modules.forEach(module => {
+          module.blocks.forEach(block => {
+            if (checkConstructorName(block)) {
+              block.dependencies.forEach(dependency => {
+                const { name: pathName, dir: pathDir } = path.parse(
+                  dependency.module.resource
+                );
+
+                if (pathName === 'index') {
+                  const fileName = pathDir.split('/').pop();
+
+                  dependency.block.chunkName = fileName;
+                  dependency.block.name = fileName;
+                } else {
+                  dependency.block.chunkName = pathName;
+                  dependency.block.name = pathName;
+                }
+              });
+            }
+          });
         });
+      });
     });
+  }
 }
 
 module.exports = AsyncChunkNames;
