@@ -1,13 +1,19 @@
-webpackJsonp([1],[
-/* 0 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+webpackJsonp([1],{
+
+/***/ 16:
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
-/* harmony default export */ __webpack_exports__["default"] = function () {
-    console.log('asyncChunk 1');
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function () {
+  console.log('asyncChunk 1');
 };
 
 /***/ })
-]);
+
+});

@@ -1,4 +1,3 @@
-
-export default function () {
-    console.log('asyncChunk 1');
-}
+export default () => {
+  console.log('asyncChunk 1');
+};
