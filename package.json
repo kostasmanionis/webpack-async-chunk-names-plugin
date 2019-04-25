@@ -1,17 +1,17 @@
 {
   "name": "webpack-async-chunk-names-plugin",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "A webpack plugin for naming on-demand chunks",
   "main": "index.js",
   "repository": "https://github.com/kostasmanionis/webpack-async-chunk-names-plugin",
   "author": "Kostas Manionis <kostasmanionis@gmail.com>",
   "license": "MIT",
   "peerDependencies": {
-    "webpack": "^2.1.0-beta.22"
+    "webpack": "^4.29.6"
   },
   "devDependencies": {
     "jest": "^18.1.0",
-    "webpack": "^2.2.0"
+    "webpack": "^4.29.6"
   },
   "scripts": {
     "test": "jest"
