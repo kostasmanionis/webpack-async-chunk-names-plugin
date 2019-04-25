@@ -19,8 +19,8 @@ function checkConstructorNames(object) {
 function AsyncChunkNames() {}
 
 AsyncChunkNames.prototype.apply = function (compiler) {
-    compiler.plugin('compilation', function (compilation) {
-        compilation.plugin('seal', function () {
+    compiler.hooks.compilation.tap('AsyncChunkNamesPlugin', function (compilation) {
+        compilation.hooks.seal.tap('AsyncChunkNamesPlugin', function () {
             compilation.modules.forEach(function (module) {
                 module.blocks.forEach(function (block) {
                     if (checkConstructorNames(block)) {
